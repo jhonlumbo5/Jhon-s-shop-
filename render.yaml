@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: johns-shop
+    runtime: node
+    plan: starter
+    buildCommand: npm install --no-audit --no-fund && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: johns-shop-data
+      mountPath: /var/data
+      sizeGB: 1
